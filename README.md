@@ -69,10 +69,7 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a 
 
 2 . https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html
 
-
-## Support
-
-For support, follow https://github.com/roshanwaghmare 
+ 
 
 
 ## Complete Guide
@@ -93,6 +90,11 @@ For support, follow https://github.com/roshanwaghmare
  - MISSION SUCCESSFUL :)
  
 
+
+
+## Support
+
+For support, follow https://github.com/roshanwaghmare
 
  
 
