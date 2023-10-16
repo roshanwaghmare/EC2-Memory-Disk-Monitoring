@@ -1,25 +1,45 @@
-# EC2-Memory-Disk-Monitoring
-EC2 Memory Disk Monitoring
-EC2 Memory Disk Monitoring
+
+# EC2 Memory Disk Monitoring
+
 Monitor EC2 Memory and Disk Utilisation using CloudWatch | AWS EC2 Monitoring with Cloudwatch | Monitor Memory and Disk Utilisation using CloudWatch | AWS CloudWatch Demo
 
-# Steps:
-Step 1: Create an AWS EC2 IAM Role and add CloudWatch and SSM Full Access. - Role Name: EC2-CloudWatch-Role.
-Step 2: Create a Parameter in Systems Manger with the name "/alarm/AWS-CWAgentLinConfig" and store the value.
-Step 3: Create an EC2 Instance, Attach the role created in Step 1 and Add the commands in the Userdata Section.
 
-# Commands that needs to be added in Userdata Section:
+
+
+
+
+## Steps
+
+- Step 1: Create an AWS EC2 IAM Role and add CloudWatch and SSM Full Access. - Role Name: EC2-CloudWatch-Role.
+
+- Step 2: Create a Parameter in Systems Manger with the name "/alarm/AWS-CWAgentLinConfig" and store the value.
+
+- Step 3: Create an EC2 Instance, Attach the role created in Step 1 and Add the commands in the Userdata Section.
+
+
+## Commands that needs to be added in Userdata Section:
+
+use this below shell Command while running EC2
+
+```bash
 #!/bin/bash
 wget https://s3.amazonaws.com/amazoncloudwatch-agent/linux/amd64/latest/AmazonCloudWatchAgent.zip
 unzip AmazonCloudWatchAgent.zip
 sudo ./install.sh
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:/alarm/AWS-CWAgentLinConfig -s
+```
 
-# Check if EC2 Instance has CWAgent Installed or not:
+## Check if EC2 Instance has CWAgent Installed or not:
+
+use this to check the if cloudwatch is Installed or running on EC2 connect
+
+```bash
 sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status
+```
 
+## Value for the SSM Parameter (/alarm/AWS-CWAgentLinConfig):
 
-Value for the SSM Parameter (/alarm/AWS-CWAgentLinConfig):
+```bach
 {
 	"metrics": {
 		"append_dimensions": {
@@ -41,7 +61,11 @@ Value for the SSM Parameter (/alarm/AWS-CWAgentLinConfig):
 		}
 	}
 }
+```
 
-# Reference/Additional Reading:
-https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent-New-Instances-CloudFormation.html
-https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html
+## Reference/Additional Reading:
+
+1 . https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent-New-Instances-CloudFormation.html
+
+2 . https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html
+
