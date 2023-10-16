@@ -69,3 +69,31 @@ sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a 
 
 2 . https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Agent-Configuration-File-Details.html
 
+
+## Support
+
+For support, follow https://github.com/roshanwaghmare 
+
+
+## Complete Guide
+
+ - First we have created IAM role with 
+ SSM FullAccess , EC2 FullAccess ,  CloudWatch FullAccess
+
+ - Then we have created Parameter in SSM name : /alarm/AWS-CWAgentLinConfig and in values we have pasted code of mentioned above Value for the SSM Parameter (/alarm/AWS-CWAgentLinConfig):
+ - Then we Created Ec2 Instance and  
+ assigned IAM instance profile  Info name and select the role created earlier after that paste the Userdata mentioned above.
+
+ - Then Connect the ec2 and Check if EC2 Instance has CWAgent Installed or not :  sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -m ec2 -a status 
+
+ - if this running and configured it means agent is running 
+
+ - now go to CloudWatch create alarm and select matric  select CWAgent for memory select instanceid and for disk select instance, disk,etc. give 80 persent threshold next it will show you memory adn disk utilazation 
+
+ - MISSION SUCCESSFUL :)
+ 
+
+
+ 
+
+
